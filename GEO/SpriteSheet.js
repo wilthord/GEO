@@ -31,26 +31,6 @@ SpriteSheetClass = Class.extend({
 	init: function () {},
 
 	//-----------------------------------------
-    // Load the atlas at the path 'imgName' into
-    // memory. This is similar to how we've
-    // loaded images in previous units.
-	load: function (imgName) {
-		// Store the URL of the spritesheet we want.
-        this.url = imgName;
-        
-        // Create a new image whose source is at 'imgName'.
-		var img = new Image();
-		img.src = imgName;
-
-        // Store the Image object in the img parameter.
-		this.img = img;
-
-        // Store this SpriteSheetClass in our global
-        // dictionary gSpriteSheets defined above.
-		gSpriteSheets[imgName] = this;
-	},
-
-	//-----------------------------------------
 	// Define a sprite for this atlas
 	defSprite: function (name, x, y, w, h, cx, cy) {
         // We create a new object with:

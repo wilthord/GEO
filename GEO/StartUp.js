@@ -21,7 +21,7 @@ StartUpClass = Class.extend({
 	init:function(iniGameState, GECallBack){
 		this.registrarCallBack(GECallBack);
 		this.obtenerContexto(iniGameState);
-		this.cargarImagenes(iniGameState);
+		this.cargarJSONImagenes(iniGameState);
 		setInterval(this.validarFinCargue, 1000 / 4);	//Invocamos la funcion que valida el proceso de cargue 4 veces por cada segundo
 	},
 
@@ -45,6 +45,55 @@ StartUpClass = Class.extend({
 			/** TODO: mostrar el progreso del cargue **/
 		}
 
+	},
+
+	obtenerContexto:function(iniGameState){
+		tareasPendientes++;
+		iniGameState.canvas = document.getElementById(iniGameState.canvasName);
+		iniGameState.contexto = iniGameState.canvas.getContext('2d');
+		tareasRealizadas++;
+	},
+
+	cargarJSONImagenes:function(iniGameState){
+		for (var i = 0; i < iniGameState.imagesURLJSON.length; i++) {
+			tareasPendientes++;
+			xhrGet(iniGameState.imagesURLJSON[i], function (data) {
+            	// Once the XMLHttpRequest loads, call the
+            	// parseMapJSON method.
+            	callbackJSONImagenes(data.responseText);
+        	});
+		};
+		
+	},
+
+	callbackJSONImagenes:function(JSONData){
+		tareasRealizadas++;
+		var parsedJSON = JSON.parse(JSONData);
+		tareasPendientes += parsedJSON.length;
+		SpriteSheetClass hoja = new SpriteSheetClass();
+		var key;
+		for(key in parsedJSON){
+
+	        this.url = parsedJSON[key].url;
+	        
+	        // Create a new image whose source is at 'imgName'.
+			var img = new Image();
+			img.src = imgName;
+
+	        // Store the Image object in the img parameter.
+			this.img = img;
+
+	        // Store this SpriteSheetClass in our global
+	        // dictionary gSpriteSheets defined above.
+			gSpriteSheets[imgName] = this;
+		}
+	},
+
+
+	imagenCargada:function(-){
+
+		var key;
+		for(key in iniGameState.)
 	}
 
 });

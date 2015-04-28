@@ -2,3 +2,6 @@
 	autocrlf = false
 [user]
 	name = Wilthord
+	email = wilthord@gmail.com
+[color]
+	ui = auto

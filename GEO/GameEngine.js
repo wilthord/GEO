@@ -7,7 +7,8 @@ GameStateClass = Class.extend({
 		objStartUp = new StartUpClass
 
 		objGameState.canvasName = 'gameCanvas';
-		objGameState.imageURL.push('spritesSheet.png');
+		//objGameState.imageURL.push('spritesSheet.png');
+		objGameState.imagesURLJSON.push('imagenes.json');
 
 		objStartUp.init(objGameState, finCarga);
 

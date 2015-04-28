@@ -6,6 +6,8 @@ GameStateClass = Class.extend({
 
 	ctx:null,
 
+	imagesURLJSON[],
+
 	imageURL[]
 
 });
